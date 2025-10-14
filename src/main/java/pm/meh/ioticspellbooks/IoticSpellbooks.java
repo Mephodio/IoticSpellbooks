@@ -28,6 +28,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
+import pm.meh.ioticspellbooks.compat.hex.HexRegistry;
 import pm.meh.ioticspellbooks.compat.iron.IoticSpellRegistry;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -62,6 +63,9 @@ public class IoticSpellbooks {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         IoticSpellRegistry.register(modEventBus);
+
+        var hexRegistry = new HexRegistry();
+        modEventBus.addListener(hexRegistry::register);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
