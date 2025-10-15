@@ -15,6 +15,7 @@ import net.minecraft.nbt.CompoundTag;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public interface SpellActionJava extends SpellAction {
@@ -34,9 +35,9 @@ public interface SpellActionJava extends SpellAction {
             throw new MishapNotEnoughArgs(argc, stack.size());
         }
 
-        List<Iota> args = stack.subList(stack.size() - argc, stack.size());
+        List<Iota> args = new ArrayList<>();
         for (int i = 0; i < argc; i++) {
-            stack.remove(stack.size() - 1);
+            args.add(0, stack.remove(stack.size() - 1));
         }
 
         var userDataMut = image.getUserData().copy();
