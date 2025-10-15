@@ -1,5 +1,4 @@
 buildscript {
-    ext.kotlin_version = '2.2.20'
     repositories {
         // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
@@ -7,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
     }
 }
 
@@ -147,7 +146,10 @@ repositories {
     maven {
         url 'https://maven.blamejared.com'
     }
-    mavenCentral()
+    maven {
+        name = 'kotlinforforge'
+        url = 'https://thedarkcolour.github.io/KotlinForForge/'
+    }
 }
 
 dependencies {
@@ -166,11 +168,12 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:caelus-308989:5281700")
 
     implementation fg.deobf("at.petra-k.hexcasting:hexcasting-forge-${minecraft_version}:${hex_casting_version}")
-    runtimeOnly fg.deobf("curse.maven:kotlinforforge-351264:5402061")
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:6164575")
     runtimeOnly fg.deobf("curse.maven:inline-971167:6556850")
     runtimeOnly fg.deobf("curse.maven:paucal-597824:5687007")
     runtimeOnly fg.deobf("curse.maven:cloth_config-348521:5729105")
+
+    implementation 'thedarkcolour:kotlinforforge:1.16.0'
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
@@ -188,7 +191,6 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
 }
 
@@ -228,7 +230,4 @@ tasks.named('jar', Jar).configure {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
-}
-kotlin {
-    jvmToolchain(17)
 }
