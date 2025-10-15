@@ -6,7 +6,6 @@ buildscript {
     }
     dependencies {
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
     }
 }
 
@@ -17,7 +16,6 @@ plugins {
 }
 
 apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'kotlin'
 
 group = mod_group_id
 version = mod_version
@@ -146,10 +144,6 @@ repositories {
     maven {
         url 'https://maven.blamejared.com'
     }
-    maven {
-        name = 'kotlinforforge'
-        url = 'https://thedarkcolour.github.io/KotlinForForge/'
-    }
 }
 
 dependencies {
@@ -168,12 +162,11 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:caelus-308989:5281700")
 
     implementation fg.deobf("at.petra-k.hexcasting:hexcasting-forge-${minecraft_version}:${hex_casting_version}")
+    runtimeOnly fg.deobf("curse.maven:kotlinforforge-351264:5402061")
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:6164575")
     runtimeOnly fg.deobf("curse.maven:inline-971167:6556850")
     runtimeOnly fg.deobf("curse.maven:paucal-597824:5687007")
     runtimeOnly fg.deobf("curse.maven:cloth_config-348521:5729105")
-
-    implementation 'thedarkcolour:kotlinforforge:1.16.0'
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
