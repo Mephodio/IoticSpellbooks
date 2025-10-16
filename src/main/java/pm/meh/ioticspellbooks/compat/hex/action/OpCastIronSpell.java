@@ -57,7 +57,6 @@ public class OpCastIronSpell implements SpellActionJava {
         @Override
         public void cast(@NotNull CastingEnvironment castingEnvironment) {
             int spellLevel = spellData.getLevel();
-            IoticSpellbooks.LOGGER.info(spellData.getSpell().getSpellId());
             AbstractSpell spell = spellData.getSpell();
 
             if (target instanceof Player player) {
