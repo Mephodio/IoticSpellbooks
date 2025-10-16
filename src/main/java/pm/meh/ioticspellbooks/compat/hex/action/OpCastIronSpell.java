@@ -65,7 +65,7 @@ public class OpCastIronSpell implements SpellActionJava {
                         spell.getLevelFor(spellData.getLevel(), target),
                         level,
                         player,
-                        CastSource.MOB,
+                        CastSource.SPELLBOOK,
                         false,
                         "hex");
             } else {
