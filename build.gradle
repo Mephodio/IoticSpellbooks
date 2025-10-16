@@ -161,9 +161,11 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:caelus-308989:5281700")
 
     implementation fg.deobf("at.petra-k.hexcasting:hexcasting-forge-${minecraft_version}:${hex_casting_version}")
+    implementation fg.deobf("com.samsthenerd.inline:inline-forge:${project.inline_version}") {
+        exclude group: "me.shedaniel.cloth", module: "cloth-config-forge"
+    }
     runtimeOnly fg.deobf("curse.maven:kotlinforforge-351264:5402061")
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:6164575")
-    runtimeOnly fg.deobf("curse.maven:inline-971167:6556850")
     runtimeOnly fg.deobf("curse.maven:paucal-597824:5687007")
     runtimeOnly fg.deobf("curse.maven:cloth_config-348521:5729105")
 

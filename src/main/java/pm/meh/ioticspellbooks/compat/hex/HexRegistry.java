@@ -27,7 +27,7 @@ public class HexRegistry {
         Registry.register(HexActions.REGISTRY,
                 ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "cast_iron_spell"),
                 new ActionRegistryEntry(
-                        HexPattern.fromAngles("adewdwwewdwawedeaqq", HexDir.SOUTH_WEST),
+                        HexPattern.fromAngles("adewdwwewdwaewdeaqq", HexDir.SOUTH_WEST),
                         new OpCastIronSpell()));
 
         Registry.register(HexActions.REGISTRY,

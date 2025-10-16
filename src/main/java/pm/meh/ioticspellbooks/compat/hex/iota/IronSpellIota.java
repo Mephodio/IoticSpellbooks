@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pm.meh.ioticspellbooks.compat.inline.IronSpellIconData;
 
 import java.util.List;
 
@@ -81,9 +82,14 @@ public class IronSpellIota extends Iota {
             if (spellData == null) {
                 return Component.translatable("ioticspellbooks.iota.iron_spell.invalid");
             }
+
+            Component inlineIcon = new IronSpellIconData(spellData.getSpell().getSpellResource())
+                    .asText(false);
+
             return Component.translatable("ioticspellbooks.iota.iron_spell.display",
                     spellData.getSpell().getDisplayName(null), spellData.getLevel())
-                    .withStyle(spellData.getSpell().getSchoolType().getDisplayName().getStyle());
+                    .withStyle(spellData.getSpell().getSchoolType().getDisplayName().getStyle())
+                    .append(inlineIcon);
         }
 
         @Override
