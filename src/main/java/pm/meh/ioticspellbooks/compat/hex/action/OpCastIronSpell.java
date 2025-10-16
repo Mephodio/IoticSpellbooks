@@ -16,8 +16,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import pm.meh.ioticspellbooks.IoticSpellbooks;
 import pm.meh.ioticspellbooks.compat.hex.iface.RenderedSpellJava;
 import pm.meh.ioticspellbooks.compat.hex.iface.SpellActionJava;
+import pm.meh.ioticspellbooks.compat.hex.iota.IronSpellIota;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,7 +27,7 @@ import java.util.List;
 public class OpCastIronSpell implements SpellActionJava {
     @Override
     public int getArgc() {
-        return 1;
+        return 2;
     }
 
     @Override
@@ -41,21 +43,21 @@ public class OpCastIronSpell implements SpellActionJava {
     @Override
     public @NotNull Result execute(@NotNull List<? extends Iota> list, @NotNull CastingEnvironment castingEnvironment) throws Mishap {
 
-        var target = OperatorUtils.getLivingEntityButNotArmorStand(list, 0, getArgc());
+        var spell = IronSpellIota.getFromStack(list, 0, getArgc());
+        var target = OperatorUtils.getLivingEntityButNotArmorStand(list, 1, getArgc());
 
         return new SpellAction.Result(
-                new Spell(target, castingEnvironment.getWorld()),
+                new Spell(spell, target, castingEnvironment.getWorld()),
                 MediaConstants.SHARD_UNIT,
                 Collections.emptyList(),
-                1);
+                2);
     }
 
-    private record Spell(LivingEntity target, Level level) implements RenderedSpellJava {
+    private record Spell(SpellData spellData, LivingEntity target, Level level) implements RenderedSpellJava {
         @Override
         public void cast(@NotNull CastingEnvironment castingEnvironment) {
-            int spellLevel = 1;
-
-            SpellData spellData = new SpellData(SpellRegistry.MAGIC_MISSILE_SPELL.get(), spellLevel, false);
+            int spellLevel = spellData.getLevel();
+            IoticSpellbooks.LOGGER.info(spellData.getSpell().getSpellId());
             AbstractSpell spell = spellData.getSpell();
 
             if (target instanceof Player player) {

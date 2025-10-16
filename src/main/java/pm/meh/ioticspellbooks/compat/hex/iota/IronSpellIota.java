@@ -2,6 +2,8 @@ package pm.meh.ioticspellbooks.compat.hex.iota;
 
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.iota.IotaType;
+import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota;
+import at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs;
 import at.petrak.hexcasting.api.utils.HexUtils;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.SpellData;
@@ -11,6 +13,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class IronSpellIota extends Iota {
 
@@ -24,6 +28,18 @@ public class IronSpellIota extends Iota {
 
     public SpellData getSpellData() {
         return (SpellData) payload;
+    }
+
+    public static SpellData getFromStack(List<? extends Iota> stack, int idx, int argc) {
+        if (idx >= stack.size()) {
+            throw new MishapNotEnoughArgs(idx + 1, stack.size());
+        }
+        var x = stack.get(idx);
+        if (x instanceof IronSpellIota ironSpellIota) {
+            return ironSpellIota.getSpellData();
+        }
+
+        throw MishapInvalidIota.ofType(x, (argc == 0) ? idx : (argc - idx - 1), "iron_spell");
     }
 
     @Override
