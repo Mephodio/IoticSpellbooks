@@ -65,8 +65,9 @@ public class IronSpellIota extends Iota {
             if (spellData == null) {
                 return Component.translatable("ioticspellbooks.iota.iron_spell.invalid");
             }
-            return Component.translatable("tooltip.irons_spellbooks.selected_spell",
-                    spellData.getSpell().getDisplayName(null), spellData.getLevel());
+            return Component.translatable("ioticspellbooks.iota.iron_spell.display",
+                    spellData.getSpell().getDisplayName(null), spellData.getLevel())
+                    .withStyle(spellData.getSpell().getSchoolType().getDisplayName().getStyle());
         }
 
         @Override
