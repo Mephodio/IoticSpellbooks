@@ -144,6 +144,14 @@ repositories {
     maven {
         url 'https://maven.blamejared.com'
     }
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
 }
 
 dependencies {
@@ -156,9 +164,11 @@ dependencies {
 
     implementation fg.deobf("io.redspace.ironsspellbooks:irons_spellbooks:${irons_spells_version}")
     runtimeOnly fg.deobf("curse.maven:curios-309927:6418456")
-    runtimeOnly fg.deobf("curse.maven:geckolib-388172:7025129")
     runtimeOnly fg.deobf("curse.maven:playeranimator-658587:4587214")
     runtimeOnly fg.deobf("curse.maven:caelus-308989:5281700")
+
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
+    implementation("com.eliotlash.mclib:mclib:20")
 
     implementation fg.deobf("at.petra-k.hexcasting:hexcasting-forge-${minecraft_version}:${hex_casting_version}")
     implementation fg.deobf("com.samsthenerd.inline:inline-forge:${project.inline_version}") {

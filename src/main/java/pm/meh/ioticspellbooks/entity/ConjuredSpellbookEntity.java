@@ -1,9 +1,8 @@
 package pm.meh.ioticspellbooks.entity;
 
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.HumanoidArm;
-import net.minecraft.world.entity.LivingEntity;
+import io.redspace.ironsspellbooks.api.magic.MagicData;
+import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.AbstractSpellCastingMob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
@@ -12,9 +11,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 
-public class ConjuredSpellbookEntity extends LivingEntity {
-    public ConjuredSpellbookEntity(EntityType<? extends LivingEntity> entityType, Level level) {
+public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
+
+    private final MagicData playerMagicData = new MagicData(true);
+
+    public ConjuredSpellbookEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
+        noPhysics = true;
     }
 
     @Override
@@ -33,6 +36,16 @@ public class ConjuredSpellbookEntity extends LivingEntity {
     @Override
     public @NotNull HumanoidArm getMainArm() {
         return HumanoidArm.LEFT;
+    }
+
+    @Override
+    public boolean canBreatheUnderwater() {
+        return true;
+    }
+
+    @Override
+    public boolean isNoGravity() {
+        return true;
     }
 
     public static AttributeSupplier.Builder prepareAttributes() {
