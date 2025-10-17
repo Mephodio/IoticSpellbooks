@@ -12,6 +12,7 @@ import net.minecraftforge.registries.RegisterEvent;
 import pm.meh.ioticspellbooks.IoticSpellbooks;
 import pm.meh.ioticspellbooks.compat.hex.action.OpCastIronSpell;
 import pm.meh.ioticspellbooks.compat.hex.action.OpConjureSpellbook;
+import pm.meh.ioticspellbooks.compat.hex.action.OpDisperseConjuredSpellbook;
 import pm.meh.ioticspellbooks.compat.hex.action.OpIotifyIronSpell;
 import pm.meh.ioticspellbooks.compat.hex.iota.IronSpellIota;
 
@@ -40,8 +41,14 @@ public class HexRegistry {
         Registry.register(HexActions.REGISTRY,
                 ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "conjure_spellbook"),
                 new ActionRegistryEntry(
-                        HexPattern.fromAngles("qaqwawqwwawq", HexDir.WEST),
+                        HexPattern.fromAngles("qaqwawqwwawq", HexDir.EAST),
                         new OpConjureSpellbook()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "disperse_spellbook"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("edeqawqwwawq", HexDir.NORTH_EAST),
+                        new OpDisperseConjuredSpellbook()));
     }
 
     private void registerIotaTypes() {
