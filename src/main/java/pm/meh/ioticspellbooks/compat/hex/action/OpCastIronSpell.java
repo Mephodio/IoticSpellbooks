@@ -6,6 +6,7 @@ import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.mishaps.Mishap;
 import at.petrak.hexcasting.api.misc.MediaConstants;
+import io.redspace.ironsspellbooks.api.entity.IMagicEntity;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
@@ -68,6 +69,8 @@ public class OpCastIronSpell implements SpellActionJava {
                         CastSource.SPELLBOOK,
                         false,
                         "hex");
+            } else if (target instanceof IMagicEntity castingMob) {
+                castingMob.initiateCastSpell(spell, spellLevel);
             } else {
                 var magicData = MagicData.getPlayerMagicData(target);
 
