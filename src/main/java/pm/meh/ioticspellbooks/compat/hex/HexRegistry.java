@@ -10,10 +10,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.RegisterEvent;
 import pm.meh.ioticspellbooks.IoticSpellbooks;
-import pm.meh.ioticspellbooks.compat.hex.action.OpCastIronSpell;
-import pm.meh.ioticspellbooks.compat.hex.action.OpConjureSpellbook;
-import pm.meh.ioticspellbooks.compat.hex.action.OpDisperseConjuredSpellbook;
-import pm.meh.ioticspellbooks.compat.hex.action.OpIotifyIronSpell;
+import pm.meh.ioticspellbooks.compat.hex.action.*;
 import pm.meh.ioticspellbooks.compat.hex.iota.IronSpellIota;
 
 public class HexRegistry {
@@ -49,6 +46,12 @@ public class HexRegistry {
                 new ActionRegistryEntry(
                         HexPattern.fromAngles("edeqawqwwawq", HexDir.NORTH_EAST),
                         new OpDisperseConjuredSpellbook()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "direct_spellbook"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("qaqwawqwwawqewd", HexDir.EAST),
+                        new OpDirectConjuredSpellbook()));
     }
 
     private void registerIotaTypes() {
