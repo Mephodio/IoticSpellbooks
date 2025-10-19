@@ -29,6 +29,7 @@ import pm.meh.ioticspellbooks.compat.hex.HexRegistry;
 import pm.meh.ioticspellbooks.compat.iron.IoticSpellRegistry;
 import pm.meh.ioticspellbooks.entity.ConjuredSpellbookEntity;
 import pm.meh.ioticspellbooks.entity.ConjuredSpellbookEntityRenderer;
+import pm.meh.ioticspellbooks.entity.ConjuredSpellbookModel;
 
 @Mod(IoticSpellbooks.MODID)
 public class IoticSpellbooks {
@@ -73,9 +74,8 @@ public class IoticSpellbooks {
 
         @SubscribeEvent
         public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-            event.registerLayerDefinition(new ModelLayerLocation(
-                    ResourceLocation.fromNamespaceAndPath(MODID, "conjured_spellbook"), "main"),
-                    BellRenderer::createBodyLayer);
+            event.registerLayerDefinition(ConjuredSpellbookModel.LAYER_LOCATION,
+                    ConjuredSpellbookModel::createBodyLayer);
         }
     }
 }

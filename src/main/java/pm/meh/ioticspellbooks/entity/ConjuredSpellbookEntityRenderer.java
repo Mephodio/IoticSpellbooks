@@ -1,17 +1,24 @@
 package pm.meh.ioticspellbooks.entity;
 
-import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
+import pm.meh.ioticspellbooks.IoticSpellbooks;
 
-public class ConjuredSpellbookEntityRenderer extends EntityRenderer<ConjuredSpellbookEntity> {
-    public ConjuredSpellbookEntityRenderer(EntityRendererProvider.Context p_174008_) {
-        super(p_174008_);
+public class ConjuredSpellbookEntityRenderer
+        extends LivingEntityRenderer<ConjuredSpellbookEntity,ConjuredSpellbookModel<ConjuredSpellbookEntity>> {
+    public ConjuredSpellbookEntityRenderer(EntityRendererProvider.Context context) {
+        super(context, new ConjuredSpellbookModel<>(context.bakeLayer(ConjuredSpellbookModel.LAYER_LOCATION)), 0);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(ConjuredSpellbookEntity p_114482_) {
-        return TextureAtlas.LOCATION_BLOCKS;
+    public @NotNull ResourceLocation getTextureLocation(@NotNull ConjuredSpellbookEntity entity) {
+        return ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "textures/entity/conjured_spellbook.png");
+    }
+
+    @Override
+    protected boolean shouldShowName(@NotNull ConjuredSpellbookEntity entity) {
+        return super.shouldShowName(entity) && entity.hasCustomName();
     }
 }
