@@ -79,7 +79,7 @@ public class OpDirectConjuredSpellbook implements SpellActionJava {
                 spellbookEntity.setTarget(targetEntity);
             } else if (targetVec3 != null) {
                 spellbookEntity.setTarget(null);
-                spellbookEntity.forceLookAtTarget(targetVec3);
+                spellbookEntity.lookAtTarget(spellbookEntity.getEyePosition().add(targetVec3));
             } else {
                 spellbookEntity.setTarget(null);
             }

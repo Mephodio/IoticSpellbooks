@@ -1,15 +1,15 @@
 package pm.meh.ioticspellbooks.entity;
 
-import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.AbstractSpellCastingMob;
+import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.LookControl;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -39,7 +39,7 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
     public void tick() {
         super.tick();
 
-        forceLookAtTarget(getTarget());
+        lookAtTarget(getTarget());
 
         if (this.level().isClientSide) {
             setupAnimationStates();
@@ -61,6 +61,16 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
         super.castComplete();
 
         queryStopCasting = true;
+    }
+
+    @Override
+    protected LookControl createLookControl() {
+        return new LookControl(this) {
+            @Override
+            protected boolean resetXRotOnTick() {
+                return false;
+            }
+        };
     }
 
     @Override
@@ -101,32 +111,15 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
         return SoundEvents.AMETHYST_CLUSTER_BREAK;
     }
 
-    public void forceLookAtTarget(Vec3 target) {
+    public void lookAtTarget(Vec3 target) {
         if (target != null) {
-            double d0 = target.x;
-            double d1 = target.y;
-            double d2 = target.z;
-
-            double d3 = Math.sqrt(d0 * d0 + d2 * d2);
-            float f = (float) (Mth.atan2(d2, d0) * (double) (180F / (float) Math.PI)) - 90.0F;
-            float f1 = (float) (-(Mth.atan2(d1, d3) * (double) (180F / (float) Math.PI)));
-            this.setXRot(f1 % 360);
-            this.setYBodyRot(f % 360);
+            lookAt(EntityAnchorArgument.Anchor.EYES, target);
         }
     }
 
-    private void forceLookAtTarget(LivingEntity target) {
+    private void lookAtTarget(LivingEntity target) {
         if (target != null) {
-            double d0 = target.getX() - this.getX();
-            double d2 = target.getZ() - this.getZ();
-            double d1 = target.getEyeY() - this.getEyeY();
-
-            double d3 = Math.sqrt(d0 * d0 + d2 * d2);
-            float f = (float) (Mth.atan2(d2, d0) * (double) (180F / (float) Math.PI)) - 90.0F;
-            float f1 = (float) (-(Mth.atan2(d1, d3) * (double) (180F / (float) Math.PI)));
-            this.setXRot(f1 % 360);
-            this.setYBodyRot(f % 360);
-            this.setYBodyRot(f % 360);
+            lookAtTarget(target.getEyePosition());
         }
     }
 
