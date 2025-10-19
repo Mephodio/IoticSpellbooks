@@ -21,6 +21,7 @@ import java.util.Collections;
 
 public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
     private int OPEN_ANIMATION_DURATION = 20;
+    private String NBT_KEY_SPELL_TARGET = "SpellTarget";
 
     public final AnimationState openAnimationState = new AnimationState();
     public final AnimationState closeAnimationState = new AnimationState();
@@ -110,6 +111,34 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
     protected @Nullable SoundEvent getDeathSound() {
         return SoundEvents.AMETHYST_CLUSTER_BREAK;
     }
+
+    // doesnt work because cant retrieve entity by uuid at the moment when nbt data is read
+    // workaround idea: add targetUUID field to spellbook entity; every several seconds or so,
+    //      if target entity is null and targetUUID is not null, try to resolve entity and clear targetUUID
+//    @Override
+//    public void addAdditionalSaveData(CompoundTag pCompound) {
+//        super.addAdditionalSaveData(pCompound);
+//
+//        var target = this.getTarget();
+//        if (target != null) {
+//            pCompound.putUUID(NBT_KEY_SPELL_TARGET, target.getUUID());
+//        }
+//    }
+//
+//    @Override
+//    public void readAdditionalSaveData(CompoundTag pCompound) {
+//        super.readAdditionalSaveData(pCompound);
+//
+//        if (pCompound.hasUUID(NBT_KEY_SPELL_TARGET)) {
+//            var uuid = pCompound.getUUID(NBT_KEY_SPELL_TARGET);
+//            if (this.level() instanceof ServerLevel serverLevel) {
+//                var targetEntity = serverLevel.getEntity(uuid);
+//                if (targetEntity instanceof LivingEntity livingEntity) {
+//                    this.setTarget(livingEntity);
+//                }
+//            }
+//        }
+//    }
 
     public void lookAtTarget(Vec3 target) {
         if (target != null) {
