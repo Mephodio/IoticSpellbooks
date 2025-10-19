@@ -8,6 +8,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 import pm.meh.ioticspellbooks.IoticSpellbooks;
 
@@ -35,6 +36,8 @@ public class ConjuredSpellbookModel<T extends ConjuredSpellbookEntity> extends H
 	@Override
 	public void setupAnim(@NotNull ConjuredSpellbookEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
+        this.applyHeadRotation(netHeadYaw, headPitch, ageInTicks);
+
         this.animate(entity.openAnimationState, ConjuredSpellbookAnimation.OPEN, ageInTicks, 1);
         this.animate(entity.closeAnimationState, ConjuredSpellbookAnimation.CLOSE, ageInTicks, 1);
         this.animate(entity.castAnimationState, ConjuredSpellbookAnimation.CAST, ageInTicks, 1);
@@ -48,5 +51,10 @@ public class ConjuredSpellbookModel<T extends ConjuredSpellbookEntity> extends H
     @Override
     public ModelPart root() {
         return book;
+    }
+
+    private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {
+        this.book.yRot = pNetHeadYaw * ((float)Math.PI / 180F);
+        this.book.xRot = pHeadPitch * ((float)Math.PI / 180F);
     }
 }

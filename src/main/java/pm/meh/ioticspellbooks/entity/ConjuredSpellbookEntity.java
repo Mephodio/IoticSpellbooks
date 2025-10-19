@@ -20,10 +20,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import java.util.Collections;
 
 public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
-
     private int OPEN_ANIMATION_DURATION = 20;
-
-    private final MagicData playerMagicData = new MagicData(true);
 
     public final AnimationState openAnimationState = new AnimationState();
     public final AnimationState closeAnimationState = new AnimationState();
@@ -41,6 +38,8 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
     @Override
     public void tick() {
         super.tick();
+
+        forceLookAtTarget(getTarget());
 
         if (this.level().isClientSide) {
             setupAnimationStates();
@@ -112,7 +111,22 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
             float f = (float) (Mth.atan2(d2, d0) * (double) (180F / (float) Math.PI)) - 90.0F;
             float f1 = (float) (-(Mth.atan2(d1, d3) * (double) (180F / (float) Math.PI)));
             this.setXRot(f1 % 360);
-            this.setYRot(f % 360);
+            this.setYBodyRot(f % 360);
+        }
+    }
+
+    private void forceLookAtTarget(LivingEntity target) {
+        if (target != null) {
+            double d0 = target.getX() - this.getX();
+            double d2 = target.getZ() - this.getZ();
+            double d1 = target.getEyeY() - this.getEyeY();
+
+            double d3 = Math.sqrt(d0 * d0 + d2 * d2);
+            float f = (float) (Mth.atan2(d2, d0) * (double) (180F / (float) Math.PI)) - 90.0F;
+            float f1 = (float) (-(Mth.atan2(d1, d3) * (double) (180F / (float) Math.PI)));
+            this.setXRot(f1 % 360);
+            this.setYBodyRot(f % 360);
+            this.setYBodyRot(f % 360);
         }
     }
 
