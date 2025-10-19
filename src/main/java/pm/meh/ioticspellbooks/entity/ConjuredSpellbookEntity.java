@@ -1,6 +1,7 @@
 package pm.meh.ioticspellbooks.entity;
 
 import io.redspace.ironsspellbooks.api.magic.MagicData;
+import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.AbstractSpellCastingMob;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -14,16 +15,53 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.core.animation.AnimatableManager;
 
 import java.util.Collections;
 
 public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
 
+    private int OPEN_ANIMATION_DURATION = 20;
+
     private final MagicData playerMagicData = new MagicData(true);
+
+    public final AnimationState openAnimationState = new AnimationState();
+    public final AnimationState closeAnimationState = new AnimationState();
+    public final AnimationState castAnimationState = new AnimationState();
+    private int openAnimationTimeout = 0;
+    private boolean isCasting = false;
+    private boolean wasCasting = false;
+    private boolean queryStopCasting = false;
 
     public ConjuredSpellbookEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
         noPhysics = true;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        if (this.level().isClientSide) {
+            setupAnimationStates();
+        }
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {}
+
+    @Override
+    public void initiateCastSpell(AbstractSpell spell, int spellLevel) {
+        super.initiateCastSpell(spell, spellLevel);
+
+        isCasting = true;
+    }
+
+    @Override
+    public void castComplete() {
+        super.castComplete();
+
+        queryStopCasting = true;
     }
 
     @Override
@@ -75,6 +113,44 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
             float f1 = (float) (-(Mth.atan2(d1, d3) * (double) (180F / (float) Math.PI)));
             this.setXRot(f1 % 360);
             this.setYRot(f % 360);
+        }
+    }
+
+    private void setupAnimationStates() {
+        if (isCasting) {
+            if (!wasCasting) {
+                openAnimationTimeout = OPEN_ANIMATION_DURATION;
+                wasCasting = true;
+                closeAnimationState.stop();
+                openAnimationState.start(tickCount);
+            } else if (openAnimationTimeout > 0) {
+                openAnimationTimeout--;
+                if (openAnimationTimeout <= 0) {
+                    openAnimationState.stop();
+                    if (queryStopCasting) {
+                        queryStopCasting = false;
+                        isCasting = false;
+                    } else {
+                        castAnimationState.start(tickCount);
+                    }
+                }
+            } else if (queryStopCasting) {
+                queryStopCasting = false;
+                isCasting = false;
+            }
+        }
+        if (!isCasting) {
+            if (wasCasting) {
+                openAnimationTimeout = OPEN_ANIMATION_DURATION;
+                wasCasting = false;
+                castAnimationState.stop();
+                closeAnimationState.start(tickCount);
+            } else if (openAnimationTimeout > 0) {
+                openAnimationTimeout--;
+                if (openAnimationTimeout <= 0) {
+                    closeAnimationState.stop();
+                }
+            }
         }
     }
 

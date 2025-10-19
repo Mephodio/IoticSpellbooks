@@ -2,7 +2,7 @@ package pm.meh.ioticspellbooks.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import pm.meh.ioticspellbooks.IoticSpellbooks;
 
-public class ConjuredSpellbookModel<T extends ConjuredSpellbookEntity> extends EntityModel<T> {
+public class ConjuredSpellbookModel<T extends ConjuredSpellbookEntity> extends HierarchicalModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "conjured_book"), "main");
 	private final ModelPart book;
 
@@ -34,11 +34,19 @@ public class ConjuredSpellbookModel<T extends ConjuredSpellbookEntity> extends E
 
 	@Override
 	public void setupAnim(@NotNull ConjuredSpellbookEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
+        this.root().getAllParts().forEach(ModelPart::resetPose);
+        this.animate(entity.openAnimationState, ConjuredSpellbookAnimation.OPEN, ageInTicks, 1);
+        this.animate(entity.closeAnimationState, ConjuredSpellbookAnimation.CLOSE, ageInTicks, 1);
+        this.animate(entity.castAnimationState, ConjuredSpellbookAnimation.CAST, ageInTicks, 1);
 	}
 
 	@Override
 	public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		book.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
+
+    @Override
+    public ModelPart root() {
+        return book;
+    }
 }

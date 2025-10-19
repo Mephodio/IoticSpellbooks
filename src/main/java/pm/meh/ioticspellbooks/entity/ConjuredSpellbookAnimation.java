@@ -6,7 +6,7 @@ import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.animation.KeyframeAnimations;
 
 public class ConjuredSpellbookAnimation {
-	public static final AnimationDefinition open = AnimationDefinition.Builder.withLength(1.0F)
+	public static final AnimationDefinition OPEN = AnimationDefinition.Builder.withLength(1.0F)
 		.addAnimation("left_cover", new AnimationChannel(AnimationChannel.Targets.ROTATION, 
 			new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),
 			new Keyframe(1.0F, KeyframeAnimations.degreeVec(0.0F, -70.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)
@@ -37,7 +37,7 @@ public class ConjuredSpellbookAnimation {
 		))
 		.build();
 
-	public static final AnimationDefinition close = AnimationDefinition.Builder.withLength(1.0F)
+	public static final AnimationDefinition CLOSE = AnimationDefinition.Builder.withLength(1.0F)
 		.addAnimation("left_cover", new AnimationChannel(AnimationChannel.Targets.ROTATION, 
 			new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, -70.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),
 			new Keyframe(1.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)
@@ -52,7 +52,7 @@ public class ConjuredSpellbookAnimation {
 		))
 		.build();
 
-	public static final AnimationDefinition attack = AnimationDefinition.Builder.withLength(0.3333F).looping()
+	public static final AnimationDefinition CAST = AnimationDefinition.Builder.withLength(0.3333F).looping()
 		.addAnimation("left_cover", new AnimationChannel(AnimationChannel.Targets.ROTATION, 
 			new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, -70.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)
 		))
