@@ -24,11 +24,13 @@ public class ConjuredSpellbookModel<T extends ConjuredSpellbookEntity> extends H
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition book = partdefinition.addOrReplaceChild("book", CubeListBuilder.create().texOffs(18, 26).addBox(-1.0F, -16.0F, 5.0F, 2.0F, 16.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
-
-		book.addOrReplaceChild("left_cover", CubeListBuilder.create().texOffs(0, 0).addBox(0.0001F, -16.0F, -10.0F, 1.0F, 16.0F, 10.0F, new CubeDeformation(-0.0001F)), PartPose.offset(0.0F, 0.0F, 5.0F));
-		book.addOrReplaceChild("page", CubeListBuilder.create().texOffs(0, 26).addBox(0.0F, -15.0F, -9.0F, 0.0F, 14.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 5.0F));
-		book.addOrReplaceChild("right_cover", CubeListBuilder.create().texOffs(22, 0).addBox(-1.0001F, -16.0F, -10.0F, 1.0F, 16.0F, 10.0F, new CubeDeformation(-0.0001F)), PartPose.offset(0.0F, 0.0F, 5.0F));
+        PartDefinition book = partdefinition.addOrReplaceChild("book", CubeListBuilder.create().texOffs(18, 24).addBox(-1.0F, -15.0F, 5.0F, 2.0F, 14.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+        PartDefinition left_cover = book.addOrReplaceChild("left_cover", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 5.0F));
+        PartDefinition cube_r1 = left_cover.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-0.4999F, -15.0F, -10.0F, 1.0F, 14.0F, 10.0F, new CubeDeformation(-0.0001F)), PartPose.offsetAndRotation(0.5F, 0.0F, 0.0F, 0.0F, -0.1745F, 0.0F));
+        PartDefinition page = book.addOrReplaceChild("page", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 5.0F));
+        PartDefinition cube_r2 = page.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(1, 25).addBox(0.5F, -14.0F, -8.0F, 0.0F, 12.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.5F, 0.0F, 0.0F, 0.0F, 0.1745F, 0.0F));
+        PartDefinition right_cover = book.addOrReplaceChild("right_cover", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 5.0F));
+        PartDefinition cube_r3 = right_cover.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(22, 0).addBox(-0.5001F, -15.0F, -10.0F, 1.0F, 14.0F, 10.0F, new CubeDeformation(-0.0001F)), PartPose.offsetAndRotation(-0.5F, 0.0F, 0.0F, 0.0F, 0.1745F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}

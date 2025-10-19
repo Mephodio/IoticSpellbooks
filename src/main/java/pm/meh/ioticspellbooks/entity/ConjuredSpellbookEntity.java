@@ -21,6 +21,7 @@ import java.util.Collections;
 
 public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
     private int OPEN_ANIMATION_DURATION = 20;
+    private int CLOSE_ANIMATION_DURATION = 4;
     private String NBT_KEY_SPELL_TARGET = "SpellTarget";
 
     public final AnimationState openAnimationState = new AnimationState();
@@ -177,7 +178,7 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
         }
         if (!isCasting) {
             if (wasCasting) {
-                openAnimationTimeout = OPEN_ANIMATION_DURATION;
+                openAnimationTimeout = CLOSE_ANIMATION_DURATION;
                 wasCasting = false;
                 castAnimationState.stop();
                 closeAnimationState.start(tickCount);
