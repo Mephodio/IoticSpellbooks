@@ -20,9 +20,8 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import java.util.Collections;
 
 public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
-    private int OPEN_ANIMATION_DURATION = 20;
-    private int CLOSE_ANIMATION_DURATION = 4;
-    private String NBT_KEY_SPELL_TARGET = "SpellTarget";
+    private final int OPEN_ANIMATION_DURATION = 20;
+    private final int CLOSE_ANIMATION_DURATION = 4;
 
     public final AnimationState openAnimationState = new AnimationState();
     public final AnimationState closeAnimationState = new AnimationState();

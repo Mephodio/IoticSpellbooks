@@ -1,4 +1,5 @@
 {
   "ioticspellbooks.iota.iron_spell.display": "%s %d ",
-  "ioticspellbooks.iota.iron_spell.invalid": "Invalid iron's spell"
+  "ioticspellbooks.iota.iron_spell.invalid": "Invalid iron's spell",
+  "ioticspellbooks.mishap.iron_cooldown": "Spell %s is on cooldown"
 }

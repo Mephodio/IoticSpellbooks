@@ -8,10 +8,12 @@ import at.petrak.hexcasting.api.casting.mishaps.Mishap;
 import at.petrak.hexcasting.api.misc.MediaConstants;
 import io.redspace.ironsspellbooks.api.entity.IMagicEntity;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
+import io.redspace.ironsspellbooks.api.magic.MagicHelper;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.api.spells.SpellData;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -21,6 +23,7 @@ import pm.meh.ioticspellbooks.IoticSpellbooks;
 import pm.meh.ioticspellbooks.compat.hex.iface.RenderedSpellJava;
 import pm.meh.ioticspellbooks.compat.hex.iface.SpellActionJava;
 import pm.meh.ioticspellbooks.compat.hex.iota.IronSpellIota;
+import pm.meh.ioticspellbooks.compat.hex.mishap.MishapIronSpellCooldown;
 
 import java.util.Collections;
 import java.util.List;
@@ -43,13 +46,26 @@ public class OpCastIronSpell implements SpellActionJava {
 
     @Override
     public @NotNull Result execute(@NotNull List<? extends Iota> list, @NotNull CastingEnvironment castingEnvironment) throws Mishap {
-
-        var spell = IronSpellIota.getFromStack(list, 0, getArgc());
+        var spellData = IronSpellIota.getFromStack(list, 0, getArgc());
         var target = OperatorUtils.getLivingEntityButNotArmorStand(list, 1, getArgc());
 
+        var spell = spellData.getSpell();
+        long spellCost = MediaConstants.SHARD_UNIT;
+
+        LivingEntity castingEntity = castingEnvironment.getCastingEntity();
+        if (castingEntity instanceof ServerPlayer serverPlayer) {
+            if (MagicData.getPlayerMagicData(serverPlayer).getPlayerCooldowns().isOnCooldown(spell)) {
+                throw new MishapIronSpellCooldown(spell);
+            }
+            MagicHelper.MAGIC_MANAGER.addCooldown(serverPlayer, spell, CastSource.SPELLBOOK);
+        } else {
+            // penalty for avoiding cooldown - one dust for every 5 sec of cooldown skipped
+            spellCost += MediaConstants.DUST_UNIT * Math.min(1, spell.getSpellCooldown() / 100);
+        }
+
         return new SpellAction.Result(
-                new Spell(spell, target, castingEnvironment.getWorld()),
-                MediaConstants.SHARD_UNIT,
+                new Spell(spellData, target, castingEnvironment.getWorld()),
+                spellCost,
                 Collections.emptyList(),
                 2);
     }
@@ -66,7 +82,7 @@ public class OpCastIronSpell implements SpellActionJava {
                         spell.getLevelFor(spellData.getLevel(), target),
                         level,
                         player,
-                        CastSource.SPELLBOOK,
+                        CastSource.COMMAND,
                         false,
                         "hex");
             } else if (target instanceof IMagicEntity castingMob) {
