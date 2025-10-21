@@ -12,11 +12,13 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class MishapIronSpellCooldown extends Mishap {
+public class MishapIronSpellCast extends Mishap {
     private final AbstractSpell spell;
+    private final Component message;
 
-    public MishapIronSpellCooldown(AbstractSpell spell) {
+    public MishapIronSpellCast(AbstractSpell spell, Component message) {
         this.spell = spell;
+        this.message = message;
     }
 
     @Override
@@ -29,6 +31,6 @@ public class MishapIronSpellCooldown extends Mishap {
 
     @Override
     protected @Nullable Component errorMessage(@NotNull CastingEnvironment castingEnvironment, @NotNull Mishap.Context context) {
-        return error("ioticspellbooks.mishap.iron_cooldown", spell.getDisplayName(null));
+        return error("ioticspellbooks.mishap.iron_spell_cast", spell.getDisplayName(null), message);
     }
 }
