@@ -31,6 +31,6 @@ public class MishapIronSpellCast extends Mishap {
 
     @Override
     protected @Nullable Component errorMessage(@NotNull CastingEnvironment castingEnvironment, @NotNull Mishap.Context context) {
-        return error("ioticspellbooks.mishap.iron_spell_cast", spell.getDisplayName(null), message);
+        return error("ioticspellbooks.iron_spell_cast", spell.getDisplayName(null), message);
     }
 }

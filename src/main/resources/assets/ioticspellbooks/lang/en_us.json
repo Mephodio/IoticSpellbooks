@@ -1,6 +1,6 @@
 {
   "ioticspellbooks.iota.iron_spell.display": "%s %d ",
   "ioticspellbooks.iota.iron_spell.invalid": "Invalid iron's spell",
-  "ioticspellbooks.mishap.iron_spell_cast": "Unable to cast spell %s: %s",
-  "ioticspellbooks.mishap.iron_spell_cast.unattended": "Attempted to cast without player"
+  "hexcasting.mishap.ioticspellbooks.iron_spell_cast": "Unable to cast spell %s: %s",
+  "hexcasting.mishap.ioticspellbooks.iron_spell_cast.unattended": "Attempted to cast without player"
 }

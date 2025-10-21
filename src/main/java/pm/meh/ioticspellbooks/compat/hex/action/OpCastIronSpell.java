@@ -66,7 +66,8 @@ public class OpCastIronSpell implements SpellActionJava {
                 throw new MishapIronSpellCast(spell, castResult.message);
             }
         } else {
-            throw new MishapIronSpellCast(spell, Component.translatable("ioticspellbooks.mishap.iron_spell_cast.unattended"));
+            throw new MishapIronSpellCast(spell,
+                    Component.translatable("hexcasting.mishap.ioticspellbooks.iron_spell_cast.unattended"));
         }
 
         var spellCost = Math.min(MediaConstants.CRYSTAL_UNIT,
