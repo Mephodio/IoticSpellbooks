@@ -1,13 +1,7 @@
 package pm.meh.ioticspellbooks;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.blockentity.BellRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.MinecartRenderer;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.api.distmarker.Dist;
@@ -30,6 +24,7 @@ import pm.meh.ioticspellbooks.compat.iron.IoticSpellRegistry;
 import pm.meh.ioticspellbooks.entity.ConjuredSpellbookEntity;
 import pm.meh.ioticspellbooks.entity.ConjuredSpellbookEntityRenderer;
 import pm.meh.ioticspellbooks.entity.ConjuredSpellbookModel;
+import pm.meh.ioticspellbooks.network.PacketHandler;
 
 @Mod(IoticSpellbooks.MODID)
 public class IoticSpellbooks {
@@ -54,6 +49,8 @@ public class IoticSpellbooks {
         ENTITY_TYPES.register(modEventBus);
 
         modEventBus.addListener(IoticSpellbooks::registerEntityAttributes);
+
+        modEventBus.addListener(PacketHandler::init);
 
         MinecraftForge.EVENT_BUS.register(this);
 

@@ -1,20 +1,10 @@
 package pm.meh.ioticspellbooks.mixin.iron;
 
-import at.petrak.hexcasting.api.HexAPI;
-import at.petrak.hexcasting.api.casting.eval.ExecutionClientView;
-import at.petrak.hexcasting.api.casting.eval.ResolvedPatternType;
-import at.petrak.hexcasting.api.casting.eval.sideeffects.OperatorSideEffect;
-import at.petrak.hexcasting.api.casting.iota.GarbageIota;
-import at.petrak.hexcasting.api.casting.iota.IotaType;
-import at.petrak.hexcasting.api.casting.mishaps.Mishap;
 import at.petrak.hexcasting.common.msgs.MsgClearSpiralPatternsS2C;
-import at.petrak.hexcasting.common.msgs.MsgNewSpellPatternS2C;
-import at.petrak.hexcasting.common.msgs.MsgOpenSpellGuiS2C;
 import at.petrak.hexcasting.xplat.IXplatAbstractions;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.spells.ender.CounterspellSpell;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,9 +17,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import pm.meh.ioticspellbooks.compat.hex.mishap.MishapCounterspell;
-
-import java.util.List;
+import pm.meh.ioticspellbooks.compat.hex.msgs.MsgCloseSpellGuiS2C;
+import pm.meh.ioticspellbooks.network.PacketHandler;
 
 @Mixin(CounterspellSpell.class)
 public class CounterspellSpellMixin {
@@ -47,14 +36,8 @@ public class CounterspellSpellMixin {
                 var packet = new MsgClearSpiralPatternsS2C(serverPlayer.getUUID());
                 IXplatAbstractions.INSTANCE.sendPacketToPlayer(serverPlayer, packet);
                 IXplatAbstractions.INSTANCE.sendPacketTracking(serverPlayer, packet);
-
-                var patterns = IXplatAbstractions.INSTANCE.getPatternsSavedInUi(serverPlayer);
-                var ravenmind = vm.getImage().getUserData().contains(HexAPI.RAVENMIND_USERDATA) ?
-                        vm.getImage().getUserData().getCompound(HexAPI.RAVENMIND_USERDATA) : null;
-
-                IXplatAbstractions.INSTANCE.sendPacketToPlayer(serverPlayer,
-                        new MsgOpenSpellGuiS2C(InteractionHand.MAIN_HAND, patterns, List.of(), ravenmind, 0));
             }
+            PacketHandler.sendPacketToPlayer(serverPlayer, new MsgCloseSpellGuiS2C());
         }
     }
 }
