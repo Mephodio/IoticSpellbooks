@@ -9,12 +9,14 @@ import at.petrak.hexcasting.api.casting.mishaps.Mishap;
 import at.petrak.hexcasting.api.misc.MediaConstants;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import pm.meh.ioticspellbooks.IoticSpellbooks;
 import pm.meh.ioticspellbooks.compat.hex.iface.RenderedSpellJava;
 import pm.meh.ioticspellbooks.compat.hex.iface.SpellActionJava;
+import pm.meh.ioticspellbooks.entity.ConjuredSpellbookEntity;
 
 import java.util.List;
 
@@ -40,17 +42,20 @@ public class OpConjureSpellbook implements SpellActionJava {
         castingEnvironment.assertVecInRange(pos.getCenter());
 
         return new SpellAction.Result(
-                new Spell(pos, castingEnvironment.getWorld()),
+                new Spell(pos, castingEnvironment.getWorld(), castingEnvironment.getCastingEntity()),
                 MediaConstants.SHARD_UNIT,
                 List.of(ParticleSpray.burst(pos.getCenter(), 2, 50)),
                 1);
     }
 
-    private record Spell(BlockPos pos, Level level) implements RenderedSpellJava {
+    private record Spell(BlockPos pos, Level level, LivingEntity castingEntity) implements RenderedSpellJava {
         @Override
         public void cast(@NotNull CastingEnvironment castingEnvironment) {
             if (level instanceof ServerLevel serverLevel) {
-                IoticSpellbooks.CONJURED_SPELLBOOK.get().spawn(serverLevel, pos, MobSpawnType.MOB_SUMMONED);
+                ConjuredSpellbookEntity entity = IoticSpellbooks.CONJURED_SPELLBOOK.get().spawn(serverLevel, pos, MobSpawnType.MOB_SUMMONED);
+                if (entity != null) {
+                    entity.setOwner(castingEntity);
+                }
             }
         }
     }

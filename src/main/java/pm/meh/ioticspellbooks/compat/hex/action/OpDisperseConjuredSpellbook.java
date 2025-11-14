@@ -44,7 +44,7 @@ public class OpDisperseConjuredSpellbook implements SpellActionJava {
 
             return new SpellAction.Result(
                     new Spell(spellbookEntity),
-                    MediaConstants.DUST_UNIT,
+                    spellbookEntity.isOwner(castingEnvironment.getCastingEntity()) ? MediaConstants.DUST_UNIT / 1000 : MediaConstants.CRYSTAL_UNIT,
                     List.of(ParticleSpray.burst(spellbookEntity.position(), 2, 50)),
                     1);
         }

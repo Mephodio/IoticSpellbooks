@@ -3,6 +3,7 @@ package pm.meh.ioticspellbooks.entity;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.AbstractSpellCastingMob;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -18,10 +19,12 @@ import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 
 import java.util.Collections;
+import java.util.UUID;
 
 public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
     private final int OPEN_ANIMATION_DURATION = 20;
     private final int CLOSE_ANIMATION_DURATION = 4;
+    private final String NBT_KEY_OWNER = "Owner";
 
     public final AnimationState openAnimationState = new AnimationState();
     public final AnimationState closeAnimationState = new AnimationState();
@@ -30,6 +33,7 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
     private boolean isCasting = false;
     private boolean wasCasting = false;
     private boolean queryStopCasting = false;
+    private UUID ownerUuid;
 
     public ConjuredSpellbookEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
@@ -112,33 +116,31 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
         return SoundEvents.AMETHYST_CLUSTER_BREAK;
     }
 
-    // doesnt work because cant retrieve entity by uuid at the moment when nbt data is read
-    // workaround idea: add targetUUID field to spellbook entity; every several seconds or so,
-    //      if target entity is null and targetUUID is not null, try to resolve entity and clear targetUUID
-//    @Override
-//    public void addAdditionalSaveData(CompoundTag pCompound) {
-//        super.addAdditionalSaveData(pCompound);
-//
-//        var target = this.getTarget();
-//        if (target != null) {
-//            pCompound.putUUID(NBT_KEY_SPELL_TARGET, target.getUUID());
-//        }
-//    }
-//
-//    @Override
-//    public void readAdditionalSaveData(CompoundTag pCompound) {
-//        super.readAdditionalSaveData(pCompound);
-//
-//        if (pCompound.hasUUID(NBT_KEY_SPELL_TARGET)) {
-//            var uuid = pCompound.getUUID(NBT_KEY_SPELL_TARGET);
-//            if (this.level() instanceof ServerLevel serverLevel) {
-//                var targetEntity = serverLevel.getEntity(uuid);
-//                if (targetEntity instanceof LivingEntity livingEntity) {
-//                    this.setTarget(livingEntity);
-//                }
-//            }
-//        }
-//    }
+    @Override
+    public void addAdditionalSaveData(CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+
+        if (ownerUuid != null) {
+            pCompound.putUUID(NBT_KEY_OWNER, ownerUuid);
+        }
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+
+        if (pCompound.hasUUID(NBT_KEY_OWNER)) {
+            ownerUuid = pCompound.getUUID(NBT_KEY_OWNER);
+        }
+    }
+
+    public boolean isOwner(@Nullable Entity entity) {
+        return entity != null && entity.getUUID().equals(ownerUuid);
+    }
+
+    public void setOwner(@Nullable Entity entity) {
+        ownerUuid = entity == null ? null : entity.getUUID();
+    }
 
     public void lookAtTarget(Vec3 target) {
         if (target != null) {
