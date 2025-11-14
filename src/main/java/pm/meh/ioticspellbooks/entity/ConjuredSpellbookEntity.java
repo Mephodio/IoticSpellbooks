@@ -1,6 +1,8 @@
 package pm.meh.ioticspellbooks.entity;
 
+import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
+import io.redspace.ironsspellbooks.entity.mobs.AntiMagicSusceptible;
 import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.AbstractSpellCastingMob;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.nbt.CompoundTag;
@@ -21,7 +23,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import java.util.Collections;
 import java.util.UUID;
 
-public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
+public class ConjuredSpellbookEntity extends AbstractSpellCastingMob implements AntiMagicSusceptible {
     private final int OPEN_ANIMATION_DURATION = 20;
     private final int CLOSE_ANIMATION_DURATION = 4;
     private final String NBT_KEY_OWNER = "Owner";
@@ -132,6 +134,11 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob {
         if (pCompound.hasUUID(NBT_KEY_OWNER)) {
             ownerUuid = pCompound.getUUID(NBT_KEY_OWNER);
         }
+    }
+
+    @Override
+    public void onAntiMagic(MagicData playerMagicData) {
+        discard();
     }
 
     public boolean isOwner(@Nullable Entity entity) {

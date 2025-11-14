@@ -54,7 +54,7 @@ public class OpDisperseConjuredSpellbook implements SpellActionJava {
     private record Spell(ConjuredSpellbookEntity spellbookEntity) implements RenderedSpellJava {
         @Override
         public void cast(@NotNull CastingEnvironment castingEnvironment) {
-            spellbookEntity.kill();
+            spellbookEntity.discard();
         }
     }
 }
