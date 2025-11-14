@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "ioticspellbooks.refmap.json",
   "mixins": [
+    "iron.CounterspellSpellMixin"
   ],
   "client": [
   ],
