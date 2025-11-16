@@ -9,7 +9,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import pm.meh.ioticspellbooks.IoticSpellbooks;
-import pm.meh.ioticspellbooks.compat.hex.msgs.MsgCloseSpellGuiS2C;
+import pm.meh.ioticspellbooks.compat.hex.msg.MsgCloseSpellGuiS2C;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;

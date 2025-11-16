@@ -1,4 +1,4 @@
-package pm.meh.ioticspellbooks.compat.hex.msgs;
+package pm.meh.ioticspellbooks.compat.hex.msg;
 
 import at.petrak.hexcasting.client.gui.GuiSpellcasting;
 import at.petrak.hexcasting.common.msgs.IMessage;

@@ -17,7 +17,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import pm.meh.ioticspellbooks.compat.hex.msgs.MsgCloseSpellGuiS2C;
+import pm.meh.ioticspellbooks.compat.hex.msg.MsgCloseSpellGuiS2C;
+import pm.meh.ioticspellbooks.compat.hex.util.StaffGridUtils;
 import pm.meh.ioticspellbooks.network.PacketHandler;
 
 @Mixin(CounterspellSpell.class)
@@ -30,14 +31,8 @@ public class CounterspellSpellMixin {
         if (!world.isClientSide
                 && localHitResult instanceof EntityHitResult entityHitResult
                 && entityHitResult.getEntity() instanceof ServerPlayer serverPlayer) {
-            var vm = IXplatAbstractions.INSTANCE.getStaffcastVM(serverPlayer, InteractionHand.MAIN_HAND);
-            if (!vm.getImage().getStack().isEmpty()) {
-                IXplatAbstractions.INSTANCE.clearCastingData(serverPlayer);
-                var packet = new MsgClearSpiralPatternsS2C(serverPlayer.getUUID());
-                IXplatAbstractions.INSTANCE.sendPacketToPlayer(serverPlayer, packet);
-                IXplatAbstractions.INSTANCE.sendPacketTracking(serverPlayer, packet);
-            }
-            PacketHandler.sendPacketToPlayer(serverPlayer, new MsgCloseSpellGuiS2C());
+            StaffGridUtils.clearGrid(serverPlayer);
+            StaffGridUtils.closeGrid(serverPlayer);
         }
     }
 }
