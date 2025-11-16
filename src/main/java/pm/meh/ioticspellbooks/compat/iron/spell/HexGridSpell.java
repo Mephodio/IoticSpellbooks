@@ -15,6 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import pm.meh.ioticspellbooks.IoticSpellbooks;
 import pm.meh.ioticspellbooks.compat.hex.util.StaffGridUtils;
+import pm.meh.ioticspellbooks.compat.iron.IoticSpellRegistry;
 
 @AutoSpellConfig
 public class HexGridSpell extends AbstractSpell {
@@ -30,7 +31,7 @@ public class HexGridSpell extends AbstractSpell {
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.RARE)
-            .setSchoolResource(SchoolRegistry.ELDRITCH_RESOURCE)
+            .setSchoolResource(IoticSpellRegistry.HEX_SCHOOL_RESOURCE)
             .setMaxLevel(5)
             .setCooldownSeconds(5)
             .build();
