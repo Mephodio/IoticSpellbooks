@@ -31,7 +31,7 @@ public class HexGridSpell extends AbstractSpell {
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.RARE)
-            .setSchoolResource(IoticSpellRegistry.HEX_SCHOOL_RESOURCE)
+            .setSchoolResource(IoticSpellbooks.HEX_SCHOOL_RESOURCE)
             .setMaxLevel(5)
             .setCooldownSeconds(5)
             .build();
