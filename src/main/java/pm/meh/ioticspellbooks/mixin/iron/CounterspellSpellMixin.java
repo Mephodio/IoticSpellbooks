@@ -1,12 +1,9 @@
 package pm.meh.ioticspellbooks.mixin.iron;
 
-import at.petrak.hexcasting.common.msgs.MsgClearSpiralPatternsS2C;
-import at.petrak.hexcasting.xplat.IXplatAbstractions;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.spells.ender.CounterspellSpell;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
@@ -17,9 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import pm.meh.ioticspellbooks.compat.hex.msg.MsgCloseSpellGuiS2C;
 import pm.meh.ioticspellbooks.compat.hex.util.StaffGridUtils;
-import pm.meh.ioticspellbooks.network.PacketHandler;
 
 @Mixin(CounterspellSpell.class)
 public class CounterspellSpellMixin {

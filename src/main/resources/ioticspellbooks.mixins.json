@@ -8,6 +8,7 @@
     "iron.CounterspellSpellMixin"
   ],
   "client": [
+    "hex.GuiSpellcastingMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import pm.meh.ioticspellbooks.IoticSpellbooks;
+import pm.meh.ioticspellbooks.compat.hex.util.StaffGridUtils;
 
 @AutoSpellConfig
 public class HexGridSpell extends AbstractSpell {
@@ -57,8 +58,7 @@ public class HexGridSpell extends AbstractSpell {
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         if (entity instanceof Player player) {
-            // TODO: grid closes instantly if not holding hex staff in offhand
-            HexItems.STAFF_OAK.use(level, player, InteractionHand.OFF_HAND);
+            StaffGridUtils.openGridWandless(level, player, true);
         }
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }

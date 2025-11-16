@@ -10,6 +10,7 @@ import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import pm.meh.ioticspellbooks.IoticSpellbooks;
 import pm.meh.ioticspellbooks.compat.hex.msg.MsgCloseSpellGuiS2C;
+import pm.meh.ioticspellbooks.compat.hex.msg.MsgOpenWandlessSpellGuiS2C;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -37,6 +38,8 @@ public class PacketHandler {
 
         NETWORK.registerMessage(messageIdx++, MsgCloseSpellGuiS2C.class, MsgCloseSpellGuiS2C::serialize,
                 MsgCloseSpellGuiS2C::deserialize, makeClientBoundHandler(MsgCloseSpellGuiS2C::handle));
+        NETWORK.registerMessage(messageIdx++, MsgOpenWandlessSpellGuiS2C.class, MsgOpenWandlessSpellGuiS2C::serialize,
+                MsgOpenWandlessSpellGuiS2C::deserialize, makeClientBoundHandler(MsgOpenWandlessSpellGuiS2C::handle));
     }
 
     private static <T> BiConsumer<T, Supplier<NetworkEvent.Context>> makeClientBoundHandler(Consumer<T> consumer) {
