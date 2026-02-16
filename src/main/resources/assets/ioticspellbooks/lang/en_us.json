@@ -3,5 +3,7 @@
   "ioticspellbooks.iota.iron_spell.invalid": "Invalid iron's spell",
   "hexcasting.mishap.ioticspellbooks.iron_spell_cast": "Unable to cast spell %s: %s",
   "hexcasting.mishap.ioticspellbooks.iron_spell_cast.unattended": "Attempted to cast without player",
-  "school.ioticspellbooks.hex": "Hex"
+  "school.ioticspellbooks.hex": "Hex",
+  "spell.ioticspellbooks.hex_grid": "Hex Grid",
+  "spell.ioticspellbooks.hex_grid.guide": "Open Hex Casting grid"
 }
