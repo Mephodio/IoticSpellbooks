@@ -22,7 +22,7 @@ public class HexGridSpell extends AbstractSpell {
     private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "hex_grid");
 
     public HexGridSpell() {
-        this.manaCostPerLevel = 5;
+        this.manaCostPerLevel = 0;
         this.baseSpellPower = 1;
         this.spellPowerPerLevel = 1;
         this.castTime = 0;
@@ -32,7 +32,7 @@ public class HexGridSpell extends AbstractSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.RARE)
             .setSchoolResource(IoticSpellbooks.HEX_SCHOOL_RESOURCE)
-            .setMaxLevel(5)
+            .setMaxLevel(1)
             .setCooldownSeconds(5)
             .build();
 
