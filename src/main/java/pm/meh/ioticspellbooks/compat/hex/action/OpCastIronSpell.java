@@ -13,8 +13,8 @@ import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import io.redspace.ironsspellbooks.api.spells.CastResult;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.api.spells.SpellData;
-import io.redspace.ironsspellbooks.network.ClientboundSyncMana;
-import io.redspace.ironsspellbooks.setup.Messages;
+import io.redspace.ironsspellbooks.network.SyncManaPacket;
+import io.redspace.ironsspellbooks.setup.PacketDistributor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
@@ -116,7 +116,7 @@ public class OpCastIronSpell implements SpellActionJava {
 
                 var newMana = Math.max(magicData.getMana() - spell.getManaCost(spellData.getLevel()), 0);
                 magicData.setMana(newMana);
-                Messages.sendToPlayer(new ClientboundSyncMana(magicData), castingPlayer);
+                PacketDistributor.sendToPlayer(castingPlayer, new SyncManaPacket(magicData));
             }
         }
     }
