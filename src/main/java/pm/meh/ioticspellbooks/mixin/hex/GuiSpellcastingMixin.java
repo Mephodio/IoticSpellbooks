@@ -20,7 +20,7 @@ public class GuiSpellcastingMixin implements IGuiSpellcastingMixin {
         ioticspellbooks$isWandless = value;
     }
 
-    @Inject(method = "tick", at = @At("HEAD"), remap = false, cancellable = true)
+    @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     void onTick(CallbackInfo ci) {
         if (ioticspellbooks$isWandless) {
             var player = Minecraft.getInstance().player;
