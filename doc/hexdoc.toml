@@ -12,8 +12,7 @@ resource_dirs = [  # top takes priority
 export_dir = "src/hexdoc_ioticspellbooks/_export/generated"
 
 [template]
-# TODO: change this to point to your actual mod icon
-icon = "icon.png"
+icon = "{$_project.src}/main/resources/ioticspellbooks.png"
 include = [
     "ioticspellbooks",
     "hexcasting",
