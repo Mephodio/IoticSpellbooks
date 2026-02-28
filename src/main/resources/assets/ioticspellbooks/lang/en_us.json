@@ -7,11 +7,14 @@
   "spell.ioticspellbooks.hex_grid": "Hex Grid",
   "spell.ioticspellbooks.hex_grid.guide": "Open Hex Casting grid",
 
+  "entity.ioticspellbooks.conjured_spellbook": "Conjured Spellbook",
+
   "hexcasting.action.ioticspellbooks:iotify_iron_spell": "Iotify Iron's spell",
   "hexcasting.action.ioticspellbooks:cast_iron_spell": "Cast Iron's spell",
   "hexcasting.action.ioticspellbooks:conjure_spellbook": "Conjure spellbook",
   "hexcasting.action.ioticspellbooks:direct_spellbook": "Direct spellbook",
   "hexcasting.action.ioticspellbooks:disperse_spellbook": "Disperse spellbook",
+  "hexcasting.iota.ioticspellbooks:iron_spell": "Iron's spell",
 
   "ioticspellbooks.entry.interop.irons_spellbooks": "Iron's Spells 'n Spellbooks",
   "ioticspellbooks.entry.interop.irons_spellbooks.page.irons_spells": "New Iron's spells:$(br)$(li)$(l)Hex Grid$() - opens hex casting grid.",
