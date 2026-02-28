@@ -26,6 +26,9 @@ import pm.meh.ioticspellbooks.entity.ConjuredSpellbookEntity;
 import pm.meh.ioticspellbooks.entity.ConjuredSpellbookEntityRenderer;
 import pm.meh.ioticspellbooks.entity.ConjuredSpellbookModel;
 import pm.meh.ioticspellbooks.network.PacketHandler;
+import vazkii.patchouli.api.PatchouliAPI;
+
+import static at.petrak.hexcasting.interop.HexInterop.PATCHOULI_ANY_INTEROP_FLAG;
 
 @Mod(IoticSpellbooks.MODID)
 public class IoticSpellbooks {
@@ -58,6 +61,9 @@ public class IoticSpellbooks {
         MinecraftForge.EVENT_BUS.register(this);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        // Enable interop category in hex book
+        PatchouliAPI.get().setConfigFlag(PATCHOULI_ANY_INTEROP_FLAG, true);
     }
 
     public static void registerEntityAttributes(EntityAttributeCreationEvent event) {

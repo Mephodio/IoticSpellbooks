@@ -174,6 +174,9 @@ dependencies {
     implementation fg.deobf("com.samsthenerd.inline:inline-forge:${project.inline_version}") {
         exclude group: "me.shedaniel.cloth", module: "cloth-config-forge"
     }
+
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
+
     runtimeOnly fg.deobf("curse.maven:kotlinforforge-351264:5402061")
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:6164575")
     runtimeOnly fg.deobf("curse.maven:paucal-597824:5687007")

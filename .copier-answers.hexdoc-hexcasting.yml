@@ -1,0 +1,24 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+# https://copier.readthedocs.io/en/stable/updating/#never-change-the-answers-file-manually
+_commit: v0.2.0
+_src_path: gh:hexdoc-dev/hexdoc-hexcasting-template
+advanced: true
+classname: Ioticspellbooks
+generate_vscode: true
+github_repo: IoticSpellbooks
+github_user: mephodio
+gradle_deps_type: gradle.properties
+gradle_hex_version_key: hex_casting_version
+gradle_mod_version_key: mod_version
+main_branch: master
+minecraft_version: 1.20.1
+minecraft_version_in_mod_version: false
+mod_description: Hex Casting & Iron's Spells 'n Spellbooks interop
+mod_display_name: IoticSpellbooks
+modid: ioticspellbooks
+multiloader: false
+package_name: hexdoc-ioticspellbooks
+package_slug: hexdoc_ioticspellbooks
+pages_url: https://mephodio.github.io/IoticSpellbooks
+pattern_registry_path: main/java/pm/meh/ioticspellbooks/compat/hex/HexRegistry.java
+source_url: https://github.com/mephodio/IoticSpellbooks

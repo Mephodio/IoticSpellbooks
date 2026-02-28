@@ -1,0 +1,53 @@
+{
+  "name": "ioticspellbooks.entry.interop.irons_spellbooks",
+  "icon": "ioticspellbooks:textures/item/scroll_hex.png",
+  "category": "hexcasting:interop",
+  "advancement": "hexcasting:root",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.irons_spells"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:iotify_iron_spell",
+      "anchor": "ioticspellbooks:iotify_iron_spell",
+      "input": "",
+      "output": "ironSpell",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.iotify_iron_spell"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:cast_iron_spell",
+      "anchor": "ioticspellbooks:cast_iron_spell",
+      "input": "ironSpell, entity",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.cast_iron_spell"
+    },
+    "ioticspellbooks.entry.interop.irons_spellbooks.page.cast_iron_spell_2",
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:conjure_spellbook",
+      "anchor": "ioticspellbooks:conjure_spellbook",
+      "input": "vector",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.conjure_spellbook"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:direct_spellbook",
+      "anchor": "ioticspellbooks:direct_spellbook",
+      "input": "entity, vector|entity",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.direct_spellbook"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:disperse_spellbook",
+      "anchor": "ioticspellbooks:disperse_spellbook",
+      "input": "entity",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.disperse_spellbook"
+    }
+  ]
+}
