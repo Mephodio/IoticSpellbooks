@@ -52,6 +52,60 @@ public class HexRegistry {
                 new ActionRegistryEntry(
                         HexPattern.fromAngles("qaqwawqwwawqewd", HexDir.EAST),
                         new OpDirectConjuredSpellbook()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "get_iron_spell_cast_time"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("adewdwwewdwaadeeee", HexDir.SOUTH_WEST),
+                        new OpGetIronSpellCastTime()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "get_iron_spell_cooldown"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("adewdwwewdwaqwedwwedeada", HexDir.SOUTH_WEST),
+                        new OpGetIronSpellCooldown()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "get_iron_spell_cost"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("adewdwwewdwawwwdewwddadad", HexDir.SOUTH_WEST),
+                        new OpGetIronSpellCost()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "get_iron_spell_level"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("adewdwwewdwqwdwwwd", HexDir.SOUTH_WEST),
+                        new OpGetIronSpellLevel()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "get_iron_spell_max_level"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("adewdwwewdwqwwdwwwwdw", HexDir.SOUTH_WEST),
+                        new OpGetIronSpellMaxLevel()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "get_iron_spell_cast_type"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("adewdwwewdwaqwwaq", HexDir.SOUTH_WEST),
+                        new OpGetIronSpellCastType()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "downgrade_iron_spell"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("adewdwwewdwadwewwwdwe", HexDir.SOUTH_WEST),
+                        new OpDowngradeIronSpell()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "get_iron_spell_caster_cooldown"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("adewdwwewdwaqwedwwedea", HexDir.SOUTH_WEST),
+                        new OpGetIronSpellCasterCooldown()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "get_iron_mana_max"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("adewdwwaddadadaddqw", HexDir.SOUTH_WEST),
+                        new OpGetIronManaMax()));
     }
 
     private void registerIotaTypes() {

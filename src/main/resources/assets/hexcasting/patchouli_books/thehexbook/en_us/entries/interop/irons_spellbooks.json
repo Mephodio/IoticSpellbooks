@@ -48,6 +48,70 @@
       "input": "entity",
       "output": "",
       "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.disperse_spellbook"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:get_iron_spell_cast_time",
+      "anchor": "ioticspellbooks:get_iron_spell_cast_time",
+      "input": "ironSpell",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.get_iron_spell_cast_time"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:get_iron_spell_cooldown",
+      "anchor": "ioticspellbooks:get_iron_spell_cooldown",
+      "input": "ironSpell",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.get_iron_spell_cooldown"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:get_iron_spell_cost",
+      "anchor": "ioticspellbooks:get_iron_spell_cost",
+      "input": "ironSpell",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.get_iron_spell_cost"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:get_iron_spell_level",
+      "anchor": "ioticspellbooks:get_iron_spell_level",
+      "input": "ironSpell",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.get_iron_spell_level"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:get_iron_spell_max_level",
+      "anchor": "ioticspellbooks:get_iron_spell_max_level",
+      "input": "ironSpell",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.get_iron_spell_max_level"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:get_iron_spell_cast_type",
+      "anchor": "ioticspellbooks:get_iron_spell_cast_type",
+      "input": "ironSpell",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.get_iron_spell_cast_type"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:downgrade_iron_spell",
+      "anchor": "ioticspellbooks:downgrade_iron_spell",
+      "input": "ironSpell",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.downgrade_iron_spell"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:get_iron_mana_max",
+      "anchor": "ioticspellbooks:get_iron_mana_max",
+      "input": "ironSpell",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.get_iron_mana_max"
     }
   ]
 }
