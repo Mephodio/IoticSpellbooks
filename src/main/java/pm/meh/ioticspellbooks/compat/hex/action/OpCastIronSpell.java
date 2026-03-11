@@ -9,10 +9,8 @@ import at.petrak.hexcasting.api.misc.MediaConstants;
 import io.redspace.ironsspellbooks.api.entity.IMagicEntity;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.magic.MagicHelper;
-import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
-import io.redspace.ironsspellbooks.api.spells.CastResult;
-import io.redspace.ironsspellbooks.api.spells.CastSource;
-import io.redspace.ironsspellbooks.api.spells.SpellData;
+import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.network.SyncManaPacket;
 import io.redspace.ironsspellbooks.setup.PacketDistributor;
 import net.minecraft.network.chat.Component;
@@ -26,6 +24,7 @@ import pm.meh.ioticspellbooks.compat.hex.iface.RenderedSpellJava;
 import pm.meh.ioticspellbooks.compat.hex.iface.SpellActionJava;
 import pm.meh.ioticspellbooks.compat.hex.iota.IronSpellIota;
 import pm.meh.ioticspellbooks.compat.hex.mishap.MishapIronSpellCast;
+import pm.meh.ioticspellbooks.compat.iron.IronUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -71,17 +70,21 @@ public class OpCastIronSpell implements SpellActionJava {
                     Component.translatable("hexcasting.mishap.ioticspellbooks.iron_spell_cast.unattended"));
         }
 
-        var spellCost = Math.min(MediaConstants.CRYSTAL_UNIT,
-                MediaConstants.DUST_UNIT * Math.max(1, spell.getManaCost(spellData.getLevel()) / 50));
+        var manaCost = spell.getCastType() == CastType.CONTINUOUS ?
+                IronUtil.getManaCost(spellData) * spell.getCastTime(spellData.getLevel()) / 20
+                : IronUtil.getManaCost(spellData);
+
+        var hexCost = Math.min(MediaConstants.CRYSTAL_UNIT,
+                MediaConstants.DUST_UNIT * Math.max(1, manaCost / 30));
 
         return new SpellAction.Result(
-                new Spell(spellData, target, castingEnvironment.getWorld(), castingPlayer),
-                spellCost,
+                new Spell(spellData, target, castingEnvironment.getWorld(), castingPlayer, manaCost),
+                hexCost,
                 Collections.emptyList(),
                 2);
     }
 
-    private record Spell(SpellData spellData, LivingEntity target, Level level, ServerPlayer castingPlayer) implements RenderedSpellJava {
+    private record Spell(SpellData spellData, LivingEntity target, Level level, ServerPlayer castingPlayer, int manaCost) implements RenderedSpellJava {
         @Override
         public void cast(@NotNull CastingEnvironment castingEnvironment) {
             int spellLevel = spellData.getLevel();
@@ -114,7 +117,7 @@ public class OpCastIronSpell implements SpellActionJava {
                 var magicData = MagicData.getPlayerMagicData(castingPlayer);
                 MagicHelper.MAGIC_MANAGER.addCooldown(castingPlayer, spell, CastSource.SPELLBOOK);
 
-                var newMana = Math.max(magicData.getMana() - spell.getManaCost(spellData.getLevel()), 0);
+                var newMana = Math.max(magicData.getMana() - manaCost, 0);
                 magicData.setMana(newMana);
                 PacketDistributor.sendToPlayer(castingPlayer, new SyncManaPacket(magicData));
             }
