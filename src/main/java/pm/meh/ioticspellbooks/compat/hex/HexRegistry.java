@@ -42,6 +42,12 @@ public class HexRegistry {
                         new OpConjureSpellbook()));
 
         Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "conjure_spellbook_temp"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("wqaqwawqwwawq", HexDir.EAST),
+                        new OpConjureSpellbookTemp()));
+
+        Registry.register(HexActions.REGISTRY,
                 ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "disperse_spellbook"),
                 new ActionRegistryEntry(
                         HexPattern.fromAngles("edeqawqwwawq", HexDir.NORTH_EAST),

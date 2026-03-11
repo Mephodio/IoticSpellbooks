@@ -1,11 +1,14 @@
 package pm.meh.ioticspellbooks.entity;
 
+import at.petrak.hexcasting.api.casting.ParticleSpray;
+import at.petrak.hexcasting.api.pigment.FrozenPigment;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import io.redspace.ironsspellbooks.entity.mobs.AntiMagicSusceptible;
 import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.AbstractSpellCastingMob;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -35,6 +38,7 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob implements 
     private boolean isCasting = false;
     private boolean wasCasting = false;
     private boolean queryStopCasting = false;
+    private boolean isTemp = false;
     private UUID ownerUuid;
 
     public ConjuredSpellbookEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
@@ -68,6 +72,13 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob implements 
         super.castComplete();
 
         queryStopCasting = true;
+
+        if (isTemp) {
+            this.discard();
+            if (level() instanceof ServerLevel serverLevel) {
+                ParticleSpray.burst(position(), 1, 50).sprayParticles(serverLevel, FrozenPigment.DEFAULT.get());
+            }
+        }
     }
 
     @Override
@@ -147,6 +158,10 @@ public class ConjuredSpellbookEntity extends AbstractSpellCastingMob implements 
 
     public void setOwner(@Nullable Entity entity) {
         ownerUuid = entity == null ? null : entity.getUUID();
+    }
+
+    public void makeTemp() {
+        isTemp = true;
     }
 
     public void lookAtTarget(Vec3 target) {
