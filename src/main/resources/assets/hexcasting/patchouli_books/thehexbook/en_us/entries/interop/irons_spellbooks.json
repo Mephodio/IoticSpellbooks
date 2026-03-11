@@ -152,6 +152,14 @@
       "input": "ironSpell",
       "output": "",
       "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.stop_iron_casting"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:reduce_iron_spell_cooldown",
+      "anchor": "ioticspellbooks:reduce_iron_spell_cooldown",
+      "input": "ironSpell",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.reduce_iron_spell_cooldown"
     }
   ]
 }

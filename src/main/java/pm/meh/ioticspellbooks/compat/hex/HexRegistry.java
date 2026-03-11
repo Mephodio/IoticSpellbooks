@@ -136,6 +136,12 @@ public class HexRegistry {
                 new ActionRegistryEntry(
                         HexPattern.fromAngles("adewdwwewdwadaqdee", HexDir.SOUTH_WEST),
                         new OpStopIronCasting()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "reduce_iron_spell_cooldown"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("qwwaadadqewwdwwedeadaawedaqwaw", HexDir.EAST),
+                        new OpReduceIronSpellCooldown()));
     }
 
     private void registerIotaTypes() {
