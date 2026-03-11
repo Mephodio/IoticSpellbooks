@@ -112,6 +112,30 @@ public class HexRegistry {
                 new ActionRegistryEntry(
                         HexPattern.fromAngles("adewdwwaddadadaddqw", HexDir.SOUTH_WEST),
                         new OpGetIronManaMax()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "get_iron_mana_current"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("adewdwwaddadqdw", HexDir.SOUTH_WEST),
+                        new OpGetIronManaCurrent()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "get_iron_cast_time_remaining"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("adewdwweadeew", HexDir.SOUTH_WEST),
+                        new OpGetIronCastTimeRemaining()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "get_iron_cast_spell"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("adewdwwewdwaqq", HexDir.SOUTH_WEST),
+                        new OpGetIronCastSpell()));
+
+        Registry.register(HexActions.REGISTRY,
+                ResourceLocation.fromNamespaceAndPath(IoticSpellbooks.MODID, "stop_iron_casting"),
+                new ActionRegistryEntry(
+                        HexPattern.fromAngles("adewdwwewdwadaqdee", HexDir.SOUTH_WEST),
+                        new OpStopIronCasting()));
     }
 
     private void registerIotaTypes() {

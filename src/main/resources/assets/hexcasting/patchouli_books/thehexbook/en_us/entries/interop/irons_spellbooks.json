@@ -120,6 +120,38 @@
       "input": "ironSpell",
       "output": "",
       "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.get_iron_mana_max"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:get_iron_mana_current",
+      "anchor": "ioticspellbooks:get_iron_mana_current",
+      "input": "ironSpell",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.get_iron_mana_current"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:get_iron_cast_time_remaining",
+      "anchor": "ioticspellbooks:get_iron_cast_time_remaining",
+      "input": "ironSpell",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.get_iron_cast_time_remaining"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:get_iron_cast_spell",
+      "anchor": "ioticspellbooks:get_iron_cast_spell",
+      "input": "ironSpell",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.get_iron_cast_spell"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "ioticspellbooks:stop_iron_casting",
+      "anchor": "ioticspellbooks:stop_iron_casting",
+      "input": "ironSpell",
+      "output": "",
+      "text": "ioticspellbooks.entry.interop.irons_spellbooks.page.stop_iron_casting"
     }
   ]
 }
