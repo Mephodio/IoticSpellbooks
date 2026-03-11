@@ -70,9 +70,9 @@ public class OpCastIronSpell implements SpellActionJava {
                     Component.translatable("hexcasting.mishap.ioticspellbooks.iron_spell_cast.unattended"));
         }
 
-        var manaCost = spell.getCastType() == CastType.CONTINUOUS ?
-                IronUtil.getManaCost(spellData) * spell.getCastTime(spellData.getLevel()) / 20
-                : IronUtil.getManaCost(spellData);
+        var manaCost = (int) (spell.getCastType() == CastType.CONTINUOUS ?
+                IronUtil.getManaCost(spellData) * spell.getCastTime(spellData.getLevel())
+                : IronUtil.getManaCost(spellData));
 
         var hexCost = Math.min(MediaConstants.CRYSTAL_UNIT,
                 MediaConstants.DUST_UNIT * Math.max(1, manaCost / 30));

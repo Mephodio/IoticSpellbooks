@@ -7,6 +7,7 @@ import at.petrak.hexcasting.api.casting.mishaps.Mishap;
 import org.jetbrains.annotations.NotNull;
 import pm.meh.ioticspellbooks.compat.hex.iface.ConstMediaActionJava;
 import pm.meh.ioticspellbooks.compat.hex.iota.IronSpellIota;
+import pm.meh.ioticspellbooks.compat.iron.IronUtil;
 
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class OpGetIronSpellCost implements ConstMediaActionJava {
     public @NotNull List<Iota> execute(@NotNull List<? extends Iota> list, @NotNull CastingEnvironment castingEnvironment) throws Mishap {
         var spellData = IronSpellIota.getFromStack(list, 0, getArgc());
 
-        var spell = spellData.getSpell();
+        var cost = IronUtil.getManaCost(spellData);
 
-        return List.of(new DoubleIota(spell.getManaCost(spellData.getLevel())));
+        return List.of(new DoubleIota(cost));
     }
 }
