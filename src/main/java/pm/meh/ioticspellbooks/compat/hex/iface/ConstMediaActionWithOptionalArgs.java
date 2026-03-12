@@ -19,9 +19,7 @@ import java.util.List;
 public interface ConstMediaActionWithOptionalArgs extends Action {
     int getMinArgc();
 
-    int getMaxArgc();
-
-    boolean shouldUseArg(int index, Iota iota);
+    int getCurrentArgc(List<Iota> stack);
 
     long getMediaCost();
 
@@ -32,17 +30,15 @@ public interface ConstMediaActionWithOptionalArgs extends Action {
     default OperationResult operate(@NotNull CastingEnvironment env, @NotNull CastingImage image, @NotNull SpellContinuation continuation) {
         var stack = new ArrayList<>(image.getStack());
         var minArgc = getMinArgc();
-        var maxArgc = getMaxArgc();
 
         if (minArgc > stack.size()) {
             throw new MishapNotEnoughArgs(minArgc, stack.size());
         }
 
+        var currentArgc = getCurrentArgc(stack);
+
         List<Iota> args = new ArrayList<>();
-        for (int i = 0; i < Math.min(maxArgc, stack.size()); i++) {
-            if (!shouldUseArg(i, stack.get(stack.size() - 1))) {
-                break;
-            }
+        for (int i = 0; i < currentArgc; i++) {
             args.add(0, stack.remove(stack.size() - 1));
         }
 
