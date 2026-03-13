@@ -7,7 +7,9 @@ import at.petrak.hexcasting.api.casting.iota.EntityIota;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.mishaps.Mishap;
 import at.petrak.hexcasting.api.misc.MediaConstants;
+import io.redspace.ironsspellbooks.api.entity.IMagicEntity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 import pm.meh.ioticspellbooks.compat.hex.iface.ConstMediaActionWithOptionalArgs;
 import pm.meh.ioticspellbooks.compat.hex.iota.IronSpellIota;
@@ -43,7 +45,12 @@ public class OpGetIronSpellCastTime implements ConstMediaActionWithOptionalArgs 
         if (list.size() == 2) {
             var target = OperatorUtils.getLivingEntityButNotArmorStand(list, 1, list.size());
             castingEnvironment.assertEntityInRange(target);
-            castTime = spell.getEffectiveCastTime(spellData.getLevel(), target);
+
+            if (!(target instanceof Player || target instanceof IMagicEntity)) {
+                castTime = 0;
+            } else {
+                castTime = spell.getEffectiveCastTime(spellData.getLevel(), target);
+            }
         } else {
             castTime = spell.getCastTime(spellData.getLevel());
         }
