@@ -6,7 +6,6 @@ import at.petrak.hexcasting.api.casting.iota.DoubleIota;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.mishaps.Mishap;
 import at.petrak.hexcasting.api.misc.MediaConstants;
-import io.redspace.ironsspellbooks.api.magic.MagicData;
 import org.jetbrains.annotations.NotNull;
 import pm.meh.ioticspellbooks.compat.hex.iface.ConstMediaActionJava;
 import pm.meh.ioticspellbooks.compat.iron.IronUtil;

@@ -3,6 +3,7 @@ package pm.meh.ioticspellbooks.compat.hex.action;
 import at.petrak.hexcasting.api.casting.OperatorUtils;
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.iota.Iota;
+import at.petrak.hexcasting.api.casting.iota.NullIota;
 import at.petrak.hexcasting.api.casting.mishaps.Mishap;
 import at.petrak.hexcasting.api.misc.MediaConstants;
 import org.jetbrains.annotations.NotNull;
@@ -30,6 +31,9 @@ public class OpGetIronCastSpell implements ConstMediaActionJava {
 
         var magicData = IronUtil.getMagicData(target);
 
-        return List.of(new IronSpellIota(magicData.getCastingSpell()));
+        var result = magicData.isCasting() ? new IronSpellIota(magicData.getCastingSpell())
+                : new NullIota();
+
+        return List.of(result);
     }
 }
