@@ -21,7 +21,7 @@ public class OpGetIronCastSpell implements ConstMediaActionJava {
 
     @Override
     public long getMediaCost() {
-        return MediaConstants.DUST_UNIT;
+        return MediaConstants.SHARD_UNIT;
     }
 
     @Override
