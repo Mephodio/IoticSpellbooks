@@ -77,7 +77,7 @@
       <ul class="nav navbar-nav navbar-right">
             <li>
     <a
-      href="https://github.com/Mephodio/IoticSpellbooks/tree/c65cd2fcf4c95cbb2daab5f2c6580fa76bed9136"
+      href="https://github.com/Mephodio/IoticSpellbooks/tree/584647fb801c2e20a2feba4d460e96cb01e22736"
         target="_blank"
       class="navbar-link"
       role="button"
@@ -149,7 +149,7 @@
           <li><a href="#interop/irons_spellbooks" class="toc-elem "><img
       title="item.ioticspellbooks.scroll_hex"
       alt="item.ioticspellbooks.scroll_hex"
-      src="https://raw.githubusercontent.com/Mephodio/IoticSpellbooks/c65cd2fcf4c95cbb2daab5f2c6580fa76bed9136/src/main/resources/assets/ioticspellbooks/textures/item/scroll_hex.png"
+      src="https://raw.githubusercontent.com/Mephodio/IoticSpellbooks/584647fb801c2e20a2feba4d460e96cb01e22736/src/main/resources/assets/ioticspellbooks/textures/item/scroll_hex.png"
       loading="lazy"
       class="item-texture  texture pixelated"
     > Iron&#39;s Spells &#39;n Spellbooks</a></li>
@@ -180,7 +180,7 @@
     <img
       title="item.ioticspellbooks.scroll_hex"
       alt="item.ioticspellbooks.scroll_hex"
-      src="https://raw.githubusercontent.com/Mephodio/IoticSpellbooks/c65cd2fcf4c95cbb2daab5f2c6580fa76bed9136/src/main/resources/assets/ioticspellbooks/textures/item/scroll_hex.png"
+      src="https://raw.githubusercontent.com/Mephodio/IoticSpellbooks/584647fb801c2e20a2feba4d460e96cb01e22736/src/main/resources/assets/ioticspellbooks/textures/item/scroll_hex.png"
       loading="lazy"
       class="item-texture  texture pixelated"
     >Iron&#39;s Spells &#39;n Spellbooks<a
@@ -192,10 +192,13 @@
     class="permalink small"
     title="Permalink"
   ><i class="bi bi-link-45deg"></i></a></h3>
-    <p>New Iron&#39;s spells:</p><p class="fake-li " style="--level: 1;"><strong>Hex Grid</strong> - opens hex casting grid.</p><p>Being hit by <strong>Counterspell</strong> now closes and clears hex casting grid.</p>
+    <p>I came across this other magical art, which is focused on &#34;Iron&#39;s Spells&#34; - ancient incantations capable of bending the forces of nature. While they lack the precise control that hexes provide me, they are of a great utility in their own right, especially for combat. Moreover, I was able to devise some hex patterns to interact with Iron&#39;s spells, allowing me to integrate them into my hexes!</p>
+<br />
+  <h4>Notable observations</h4>
+    <p>There&#39;s a <strong>Hex Grid</strong> Iron&#39;s spell that allows to open hex casting grid without a staff.</p><p>Being hit by <strong>Counterspell</strong> closes and clears hex casting grid.</p>
 <br />
   <div id="interop/irons_spellbooks@ioticspellbooks:iotify_iron_spell" class="">
-<h4 class="pattern-title">Iotify Iron&#39;s spell (→ ironSpell)<a
+<h4 class="pattern-title">Iotifying Reflection (→ ironSpell)<a
     href="#interop/irons_spellbooks@ioticspellbooks:iotify_iron_spell"
     class="permalink small"
     title="Permalink"
@@ -251,7 +254,7 @@
   </div>
 <br />
   <div id="interop/irons_spellbooks@ioticspellbooks:cast_iron_spell" class="">
-<h4 class="pattern-title">Cast Iron&#39;s spell (ironSpell, entity →)<a
+<h4 class="pattern-title">Cast Iron&#39;s Spell (ironSpell, entity →)<a
     href="#interop/irons_spellbooks@ioticspellbooks:cast_iron_spell"
     class="permalink small"
     title="Permalink"
@@ -303,13 +306,16 @@
         data-per-world="False"
       >Your browser does not support visualizing patterns. Pattern code: adewdwwewdwaewdeaqq</canvas>
   </details>
-      <p>Makes the entity cast the given spell. Costs the mana required for spell, plus 1 dust per 50 mana, but not more than 1 charged crystal.</p>
+      <p>Makes the entity cast the given spell. Costs the mana required for spell, spell cooldown, plus 1 dust per 30 mana, but not more than 1 charged crystal. Works only if I am capable of casting the given spell.</p>
   </div>
 <br />
-    <p>Puts the spell on cooldown for me. Fails if I can&#39;t cast spell, e.g. if it&#39;s an unknown eldritch spell, or it&#39;s on cooldown.</p><p>All living entities are capable of casting Iron&#39;s spells, but only spellcasters can properly target and maintain most spells. </p>
+  <h4>Spellcaster types</h4>
+    <p>I divided entities who can cast Iron&#39;s spells into three categories:</p><p class="fake-li " style="--level: 1;">First, there are Players like me. We draw mana from our reserves, which regenerate over time. Spells become unusable for a short time after being cast.</p><p class="fake-li " style="--level: 1;">Then, there are other entities who specialize in spellcasting. They seem to have neither limited mana supplies nor spell cooldowns.</p>
+<br />
+    <p>Their capabilities are only limited by their own minds, which suggests that Nature imposed additional limitations on <i>us</i> because of our intelligence.</p><p class="fake-li " style="--level: 1;">At last, there are mundane entities who can&#39;t use magic on their own at all. I can only make them cast spells at the expense of my own mana and cooldown. They can&#39;t maintain continuous spells at all, but also cast <i>all</i> spells instantly.</p>
 <br />
   <div id="interop/irons_spellbooks@ioticspellbooks:conjure_spellbook" class="">
-<h4 class="pattern-title">Conjure spellbook (vector →)<a
+<h4 class="pattern-title">Conjure Spellbook (vector →)<a
     href="#interop/irons_spellbooks@ioticspellbooks:conjure_spellbook"
     class="permalink small"
     title="Permalink"
@@ -361,11 +367,67 @@
         data-per-world="False"
       >Your browser does not support visualizing patterns. Pattern code: qaqwawqwwawq</canvas>
   </details>
-      <p>Conjures spellbook at the given position. Spellbook is a spellcaster entity, capable of casting Iron&#39;s spells. Costs one shard.</p>
+      <p>Conjures spellbook at the given position. Spellbook is a spellcaster entity, capable of casting Iron&#39;s spells. Costs one shard. <strong>Counterspell</strong> destroys spellbooks.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:conjure_spellbook_temp" class="">
+<h4 class="pattern-title">Conjure Lesser Spellbook (vector →)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:conjure_spellbook_temp"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="wqaqwawqwwawq"
+        data-start="east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: wqaqwawqwwawq</canvas>
+  </details>
+      <p>Conjures lesser spellbook at the given position. Lesser spellbook dissipates after casting a spell. Costs three dust.</p>
   </div>
 <br />
   <div id="interop/irons_spellbooks@ioticspellbooks:direct_spellbook" class="">
-<h4 class="pattern-title">Direct spellbook (entity, vector|entity →)<a
+<h4 class="pattern-title">Direct Spellbook (entity, vector|entity →)<a
     href="#interop/irons_spellbooks@ioticspellbooks:direct_spellbook"
     class="permalink small"
     title="Permalink"
@@ -417,11 +479,11 @@
         data-per-world="False"
       >Your browser does not support visualizing patterns. Pattern code: qaqwawqwwawqewd</canvas>
   </details>
-      <p>Directs conjured spellbook in the direction of the vector, or locks it onto given entity. Spellbook will automatically rotate to follow target entity. Costs one dust.</p>
+      <p>Directs conjured spellbook in the direction of the vector, or locks it onto the given entity. Spellbook will automatically rotate to follow target entity. Costs one dust.</p>
   </div>
 <br />
   <div id="interop/irons_spellbooks@ioticspellbooks:disperse_spellbook" class="">
-<h4 class="pattern-title">Disperse spellbook (entity →)<a
+<h4 class="pattern-title">Disperse Spellbook (entity →)<a
     href="#interop/irons_spellbooks@ioticspellbooks:disperse_spellbook"
     class="permalink small"
     title="Permalink"
@@ -474,6 +536,790 @@
       >Your browser does not support visualizing patterns. Pattern code: edeqawqwwawq</canvas>
   </details>
       <p>Destroys conjured spellbook. Costs one thousandth of a dust if spellbook was conjured by me, and one charged crystal otherwise.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:get_iron_spell_cooldown" class="">
+<h4 class="pattern-title">Rebound Gambit (ironSpell | ironSpell, player → number)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:get_iron_spell_cooldown"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adewdwwewdwaqwedwwedeada"
+        data-start="south_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: adewdwwewdwaqwedwwedeada</canvas>
+  </details>
+      <p><br />Returns spell cooldown (in ticks). If player is provided, takes into account their attributes. Costs one dust.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:get_iron_spell_caster_cooldown" class="">
+<h4 class="pattern-title">Recess Distillation (ironSpell, player → number)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:get_iron_spell_caster_cooldown"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adewdwwewdwaqwedwwedea"
+        data-start="south_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: adewdwwewdwaqwedwwedea</canvas>
+  </details>
+      <p>Returns remaining spell cooldown for the given player (in ticks). Costs one dust.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:get_iron_spell_cast_time" class="">
+<h4 class="pattern-title">Priming Gambit (ironSpell | ironSpell, entity → number)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:get_iron_spell_cast_time"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adewdwwewdwaadeeee"
+        data-start="south_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: adewdwwewdwaadeeee</canvas>
+  </details>
+      <p><br />Returns spell cast time (in ticks). If entity is provided, takes into account their attributes. Costs one dust.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:get_iron_spell_cost" class="">
+<h4 class="pattern-title">Pledge Purification (ironSpell → number)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:get_iron_spell_cost"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adewdwwewdwawwwdewwddadad"
+        data-start="south_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: adewdwwewdwawwwdewwddadad</canvas>
+  </details>
+      <p>Returns amount of mana required for casting the given spell.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:get_iron_spell_level" class="">
+<h4 class="pattern-title">Elevation Purification (ironSpell → number)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:get_iron_spell_level"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adewdwwewdwqwdwwwd"
+        data-start="south_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: adewdwwewdwqwdwwwd</canvas>
+  </details>
+      <p>Returns spell level.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:get_iron_spell_max_level" class="">
+<h4 class="pattern-title">Capstone Purification (ironSpell → number)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:get_iron_spell_max_level"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adewdwwewdwqwwdwwwwdw"
+        data-start="south_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: adewdwwewdwqwwdwwwwdw</canvas>
+  </details>
+      <p>Returns maximum possible level for the given spell.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:get_iron_spell_cast_type" class="">
+<h4 class="pattern-title">Formation Purification (ironSpell → number)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:get_iron_spell_cast_type"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adewdwwewdwaqwwaq"
+        data-start="south_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: adewdwwewdwaqwwaq</canvas>
+  </details>
+      <p>Returned number describes how the given spell is casted - <strong>1</strong> for instant spells, <strong>2</strong> for long, and <strong>3</strong> for continuous.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:downgrade_iron_spell" class="">
+<h4 class="pattern-title">Reduction Distillation (ironSpell, number → ironSpell)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:downgrade_iron_spell"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adewdwwewdwadwewwwdwe"
+        data-start="south_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: adewdwwewdwadwewwwdwe</canvas>
+  </details>
+      <p>Reduces spell level by the given number. Won&#39;t reduce below first level. Costs one dust.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:get_iron_mana_max" class="">
+<h4 class="pattern-title">Capacious Purification (player → number)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:get_iron_mana_max"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adewdwwaddadadaddqw"
+        data-start="south_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: adewdwwaddadadaddqw</canvas>
+  </details>
+      <p>Returns mana capacity of the given player. Costs one dust.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:get_iron_mana_current" class="">
+<h4 class="pattern-title">Tidal Purification (player → number)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:get_iron_mana_current"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adewdwwaddadqdw"
+        data-start="south_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: adewdwwaddadqdw</canvas>
+  </details>
+      <p>Returns current mana amount of the given player. Costs one dust.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:get_iron_cast_time_remaining" class="">
+<h4 class="pattern-title">Countdown Purification (entity → number)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:get_iron_cast_time_remaining"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adewdwweadeew"
+        data-start="south_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: adewdwweadeew</canvas>
+  </details>
+      <p>Returns time (in ticks) until the given entity finishes casting. Zero if not casting. Costs one dust.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:stop_iron_casting" class="">
+<h4 class="pattern-title">Abort Iron&#39;s cast<a
+    href="#interop/irons_spellbooks@ioticspellbooks:stop_iron_casting"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="adewdwwewdwadaqdee"
+        data-start="south_west"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: adewdwwewdwadaqdee</canvas>
+  </details>
+      <p>If I am casting Iron&#39;s spell, aborts it. Costs one dust.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:get_iron_cast_spell" class="">
+<h4 class="pattern-title">Kleptographist&#39;s Prfn. (entity → ironSpell | null)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:get_iron_cast_spell"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="dadewdwwewdwaqqwqwqwwqwqwqw"
+        data-start="east"
+        data-per-world="True"
+      >Your browser does not support visualizing patterns. Pattern code: dadewdwwewdwaqqwqwqwwqwqwqw</canvas>
+  </details>
+      <p>Returns the spell that the given entity is casting. Null if not casting. Costs one shard.</p>
+  </div>
+<br />
+  <div id="interop/irons_spellbooks@ioticspellbooks:reduce_iron_spell_cooldown" class="">
+<h4 class="pattern-title">Recess Reduction (ironSpell, player →)<a
+    href="#interop/irons_spellbooks@ioticspellbooks:reduce_iron_spell_cooldown"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="qwwaadadqewwdwwedeadaawedaqwaw"
+        data-start="east"
+        data-per-world="True"
+      >Your browser does not support visualizing patterns. Pattern code: qwwaadadqewwdwwedeadaawedaqwaw</canvas>
+  </details>
+      <p>Halves remaining spell cooldown for the given player. Costs (full cooldown)/(remaining cooldown) charged amethyst crystals.</p>
   </div>
 <br />
 </div>
