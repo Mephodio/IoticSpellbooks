@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "ioticspellbooks:reduce_iron_spell_cooldown",
+    "ioticspellbooks:get_iron_cast_spell"
+  ]
+}
