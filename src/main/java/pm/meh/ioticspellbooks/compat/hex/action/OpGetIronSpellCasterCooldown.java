@@ -28,7 +28,7 @@ public class OpGetIronSpellCasterCooldown implements ConstMediaActionJava {
     @Override
     public @NotNull List<Iota> execute(@NotNull List<? extends Iota> list, @NotNull CastingEnvironment castingEnvironment) throws Mishap {
         var spellData = IronSpellIota.getFromStack(list, 0, getArgc());
-        var target = OperatorUtils.getLivingEntityButNotArmorStand(list, 1, getArgc());
+        var target = OperatorUtils.getPlayer(list, 1, getArgc());
         castingEnvironment.assertEntityInRange(target);
 
         var spell = spellData.getSpell();

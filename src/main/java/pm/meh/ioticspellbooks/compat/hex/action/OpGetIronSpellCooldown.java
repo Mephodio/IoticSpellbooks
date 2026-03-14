@@ -43,13 +43,9 @@ public class OpGetIronSpellCooldown implements ConstMediaActionWithOptionalArgs 
         int cooldown;
 
         if (list.size() == 2) {
-            var target = OperatorUtils.getLivingEntityButNotArmorStand(list, 1, list.size());
+            var target = OperatorUtils.getPlayer(list, 1, list.size());
             castingEnvironment.assertEntityInRange(target);
-            if (target instanceof ServerPlayer serverPlayer) {
-                cooldown = MagicManager.getEffectiveSpellCooldown(spell, serverPlayer, CastSource.MOB);
-            } else {
-                cooldown = spell.getSpellCooldown();
-            }
+            cooldown = MagicManager.getEffectiveSpellCooldown(spell, target, CastSource.MOB);
         } else {
             cooldown = spell.getSpellCooldown();
         }
